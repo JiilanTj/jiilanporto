@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Project model - because apparently I need to showcase the suffering
+model Project {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  description String
+  longDescription String
+  techStack   String   // JSON array stored as string
+  category    String
+  featured    Boolean  @default(false)
+  imageUrl    String?
+  demoUrl     String?
+  repoUrl     String?
+  whatBroke   String?  // The sarcastic breakdown section
+  screenshots String?  // JSON array stored as string
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Contact messages - for people who actually want to hire this depressed coder
+model Message {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+// Analytics - because we need to know how many people visit this chaos
+model Hit {
+  id        String   @id @default(cuid())
+  path      String
+  userAgent String?
+  createdAt DateTime @default(now())
+}

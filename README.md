@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jiilan Nashrulloh Tanjung - Portfolio
 
-## Getting Started
+> A sarcastically brilliant, technically impressive personal portfolio built with modern web technologies.
 
-First, run the development server:
+## 🎭 The Vibe
+
+This isn't your typical corporate portfolio. It's dark, edgy, sarcastic, and chaotic—but in a polished, technically impressive way. Think "senior developer who uses sarcasm as oxygen" meets "3D cyberpunk aesthetic."
+
+**Tone**: Sarcastic, chaotic, comedic suffering, but technically impressive.  
+**Aesthetic**: Dark tech, neon, hacker-vibes, 3D elements, smooth animations.
+
+## 🚀 Tech Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript
+- **Styling**: TailwindCSS
+- **Animations**: Framer Motion
+- **3D Graphics**: React Three Fiber (R3F) + Drei
+- **Database**: Prisma + SQLite
+- **Icons**: React Icons
+
+## 📦 Features
+
+### Home Page
+- 🎨 3D hero section with floating animated geometry
+- 💬 Sarcastic headlines and developer memes
+- 🛠️ Technical arsenal showcase
+- 📁 Featured projects section
+- 📧 Contact form with validation
+
+### Projects
+- 📋 Grid view with category filtering
+- 🔍 Dynamic project detail pages
+- 💾 Database-driven content
+- 🎯 Featured project highlighting
+
+### API Routes
+- `/api/projects` - GET projects from database
+- `/api/contact` - POST contact form submissions
+- `/api/hit` - POST/GET visitor analytics
+
+## 🛠️ Installation
 
 ```bash
+# Install dependencies
+npm install
+
+# Set up the database
+npm run db:generate
+npm run db:push
+npm run db:seed
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+jiilanporto/
+├── app/
+│   ├── api/              # API routes
+│   ├── projects/         # Projects pages
+│   ├── globals.css       # Global styles
+│   ├── layout.tsx        # Root layout
+│   └── page.tsx          # Home page
+├── components/
+│   ├── 3d/              # 3D components
+│   ├── layout/          # Layout components
+│   └── ui/              # UI components
+├── lib/
+│   └── prisma.ts        # Prisma client
+└── prisma/
+    ├── schema.prisma    # Database schema
+    └── seed.ts          # Seed script
+```
 
-## Learn More
+## 🎨 Design System
 
-To learn more about Next.js, take a look at the following resources:
+### Colors
+- **Primary**: Cyan (#06b6d4)
+- **Secondary**: Purple (#9333ea)
+- **Background**: Black (#000000)
+- **Text**: Gray-300
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Animations
+- Fade-in on scroll
+- Slide-in sections
+- Hover effects
+- 3D floating elements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📝 Available Scripts
 
-## Deploy on Vercel
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Run ESLint
+npm run db:generate  # Generate Prisma client
+npm run db:push      # Push schema to database
+npm run db:seed      # Seed database with sample data
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎭 The Philosophy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> "Depressed coder forced to code since 2016."
+
+This portfolio represents the duality of modern development:
+- **Professional**: Clean code, best practices, type safety
+- **Honest**: Sarcastic commentary, real struggles, meme energy
+
+## 📄 License
+
+MIT - Do whatever you want with it.
+
+---
+
+Built with Next.js, suffering, and excessive caffeine ☕
