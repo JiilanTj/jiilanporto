@@ -16,6 +16,7 @@ export default function Navbar() {
   const navItems = [
     { name: 'Home', href: '/' },
     { name: 'Projects', href: '/projects' },
+    { name: 'GitHub', href: 'https://github.com/JiilanTj' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -36,13 +37,15 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <Link
+              <a
                 key={item.name}
                 href={item.href}
+                target={item.href.startsWith('http') ? '_blank' : undefined}
+                rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 className="text-gray-300 hover:text-cyan-400 transition-colors duration-200 font-medium"
               >
                 {item.name}
-              </Link>
+              </a>
             ))}
             <motion.a
               href="#contact"
@@ -75,14 +78,16 @@ export default function Navbar() {
           >
             <div className="px-4 py-4 space-y-4">
               {navItems.map((item) => (
-                <Link
+                <a
                   key={item.name}
                   href={item.href}
+                  target={item.href.startsWith('http') ? '_blank' : undefined}
+                  rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   onClick={() => setIsOpen(false)}
                   className="block text-gray-300 hover:text-cyan-400 transition-colors duration-200 font-medium"
                 >
                   {item.name}
-                </Link>
+                </a>
               ))}
               <a
                 href="#contact"

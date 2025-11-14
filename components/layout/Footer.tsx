@@ -10,10 +10,10 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: FaGithub, href: 'https://github.com/jiilan', label: 'GitHub' },
-    { icon: FaLinkedin, href: 'https://linkedin.com/in/jiilan', label: 'LinkedIn' },
+    { icon: FaGithub, href: 'https://github.com/JiilanTj', label: 'GitHub' },
+    { icon: FaLinkedin, href: 'https://www.linkedin.com/in/jiilan-nashrulloh-tanjung-a31593271/', label: 'LinkedIn' },
     { icon: FaTwitter, href: 'https://twitter.com/jiilan', label: 'Twitter' },
-    { icon: FaEnvelope, href: 'mailto:jiilan@example.com', label: 'Email' },
+    { icon: FaEnvelope, href: 'mailto:jiilannashrulloh@gmail.com', label: 'Email' },
   ];
 
   return (

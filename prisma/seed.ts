@@ -4,6 +4,7 @@
  */
 
 import { PrismaClient } from '@prisma/client';
+import * as bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
@@ -11,9 +12,22 @@ async function main() {
   console.log('🌱 Seeding database with sarcastic projects...');
 
   // Clear existing data (because we love a fresh start)
+  await prisma.user.deleteMany();
   await prisma.message.deleteMany();
   await prisma.project.deleteMany();
   await prisma.hit.deleteMany();
+
+  // Seed admin user
+  console.log('👤 Creating admin user...');
+  const hashedPassword = await bcrypt.hash('jiilan2024', 10);
+  await prisma.user.create({
+    data: {
+      username: 'admin',
+      password: hashedPassword,
+      role: 'admin',
+    },
+  });
+  console.log('✅ Admin user created: username=admin, password=jiilan2024');
 
   // Seed projects
   const projects = [

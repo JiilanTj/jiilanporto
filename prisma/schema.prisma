@@ -47,3 +47,13 @@ model Hit {
   userAgent String?
   createdAt DateTime @default(now())
 }
+
+// Admin users - for managing this beautiful chaos
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String   // Hashed with bcrypt
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

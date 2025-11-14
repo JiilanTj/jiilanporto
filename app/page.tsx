@@ -7,13 +7,15 @@
 
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
-import { FaReact, FaNode, FaPython, FaDocker, FaAws, FaGitAlt } from 'react-icons/fa';
+import { FaReact, FaNode, FaPython, FaDocker, FaAws, FaGitAlt, FaGithub } from 'react-icons/fa';
 import { SiTypescript, SiNextdotjs, SiTailwindcss, SiPostgresql, SiMongodb, SiRedis } from 'react-icons/si';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import Badge from '@/components/ui/Badge';
 import ContactForm from '@/components/ui/ContactForm';
+import TypingAnimation from '@/components/ui/TypingAnimation';
+import ParticlesBackground from '@/components/ui/ParticlesBackground';
 
 // Dynamically import 3D component with SSR disabled (because Three.js and SSR are enemies)
 const Hero3D = dynamic(() => import('@/components/3d/Hero3D'), { 
@@ -48,6 +50,9 @@ export default function Home() {
     <main className="min-h-screen bg-black">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        {/* Particles Background */}
+        <ParticlesBackground />
+        
         {/* 3D Background */}
         <div className="absolute inset-0 z-0">
           <Hero3D />
@@ -65,38 +70,73 @@ export default function Home() {
           >
             <motion.h1 
               className="text-5xl md:text-7xl font-bold mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ 
+                delay: 0.2, 
+                duration: 0.8,
+                type: "spring",
+                stiffness: 100
+              }}
             >
               <span className="gradient-text">Jiilan Nashrulloh Tanjung</span>
             </motion.h1>
 
             <motion.h2
               className="text-2xl md:text-4xl font-semibold text-gray-300 mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
-              Full-Stack & Mobile Developer
+              <TypingAnimation 
+                text="Full-Stack & Mobile Developer" 
+                speed={80}
+                delay={500}
+              />
             </motion.h2>
 
             <motion.p
-              className="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto italic"
+              className="text-lg md:text-xl text-gray-400 mb-6 max-w-2xl mx-auto italic"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
+              transition={{ delay: 1.5, duration: 0.8 }}
             >
               Depressed coder forced to code since 2016.
               <br />
               Turning caffeine into code and bugs into features.
             </motion.p>
 
+            {/* GitHub CTA with special emphasis */}
+            <motion.div
+              className="mb-8"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 2, duration: 0.5 }}
+            >
+              <motion.a
+                href="https://github.com/JiilanTj"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gray-900 border-2 border-cyan-500 rounded-lg text-cyan-400 font-bold text-lg hover:bg-gray-800 hover:border-cyan-400 transition-all group"
+                whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(6, 182, 212, 0.5)" }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FaGithub className="text-3xl group-hover:rotate-12 transition-transform" />
+                <span>Check out my GitHub</span>
+                <motion.span
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.5 }}
+                >
+                  →
+                </motion.span>
+              </motion.a>
+            </motion.div>
+
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.8 }}
+              transition={{ delay: 2.3, duration: 0.8 }}
             >
               <Button size="lg" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
                 Hire Me (If You Dare)
@@ -176,16 +216,34 @@ export default function Home() {
               return (
                 <motion.div
                   key={tech.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 50, rotateY: 90 }}
+                  whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  transition={{ 
+                    delay: index * 0.08, 
+                    duration: 0.6,
+                    type: "spring",
+                    stiffness: 100
+                  }}
+                  whileHover={{ 
+                    scale: 1.1, 
+                    rotateZ: 5,
+                    transition: { duration: 0.2 }
+                  }}
                 >
-                  <Card hover={true} glow={true}>
-                    <div className="flex flex-col items-center text-center space-y-3">
-                      <Icon className={`text-5xl ${tech.color}`} />
+                  <Card hover={false} glow={true}>
+                    <motion.div 
+                      className="flex flex-col items-center text-center space-y-3"
+                      whileHover={{ y: -5 }}
+                    >
+                      <motion.div
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.6 }}
+                      >
+                        <Icon className={`text-5xl ${tech.color}`} />
+                      </motion.div>
                       <span className="text-white font-medium">{tech.name}</span>
-                    </div>
+                    </motion.div>
                   </Card>
                 </motion.div>
               );
@@ -248,14 +306,33 @@ export default function Home() {
             {memes.map((meme, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
+                whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
+                transition={{ 
+                  delay: index * 0.15, 
+                  duration: 0.6,
+                  type: "spring",
+                  stiffness: 200
+                }}
+                whileHover={{ scale: 1.05, rotate: 2 }}
               >
                 <Card>
                   <div className="flex items-center space-x-4">
-                    <span className="text-5xl">{meme.emoji}</span>
+                    <motion.span 
+                      className="text-5xl"
+                      animate={{ 
+                        rotate: [0, 10, -10, 10, 0],
+                        scale: [1, 1.1, 1, 1.1, 1]
+                      }}
+                      transition={{ 
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatDelay: 3
+                      }}
+                    >
+                      {meme.emoji}
+                    </motion.span>
                     <p className="text-lg text-gray-300 font-medium">{meme.text}</p>
                   </div>
                 </Card>
